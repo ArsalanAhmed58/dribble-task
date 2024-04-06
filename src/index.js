@@ -1,8 +1,9 @@
 require("dotenv").config();
 require("url-search-params-polyfill");
 const createRouter = require("./routes/createRouter")
+const { HOST} = process.env;
+const PORT = process.env.PORT || 3000;
 const {error} = require("./helpers/response")
-const {PORT, HOST} = process.env;
 const {app} = require('./app');
 const requireDir = require("require-dir");
 const server = require("http").createServer(app);
