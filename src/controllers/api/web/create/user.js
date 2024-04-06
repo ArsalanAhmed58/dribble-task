@@ -1,4 +1,4 @@
-const { wrapRequestHandler, success } = require("../../../../helpers/response");
+const { wrapRequestHandler, success, error } = require("../../../../helpers/response");
 const { createRouter } = require("../../../../routes/createRouter")
 const bcrypt = require("bcryptjs")
 const { Pool } = require('pg');
