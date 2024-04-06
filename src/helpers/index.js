@@ -1,5 +1,5 @@
 // const {TOKEN_KEY} = require("../constant");
-const {hashSync, compareSync} = require("bcrypt");
+const {hashSync, compareSync} = require("bcryptjs");
 
 // const {LOGIN_TOKEN} = require("../constant");
 // const {UserToken, Permission, User, UserAppToken} = require("../models")

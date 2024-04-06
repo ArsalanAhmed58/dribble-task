@@ -30,7 +30,7 @@ const handler = async (req, res) => {
         const existingUserResult = await client.query(existingUserQuery, [username, email]);
         console.log(existingUserResult.rowCount)
         if (existingUserResult.rowCount) {
-            return res.status(400).json({ message: 'Username or email already exists' });
+            return res.send(error('Username or email already exists'));
         }
 
         // Hash password (you can use bcrypt or any other library)
