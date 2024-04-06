@@ -1,0 +1,1 @@
+module.exports = filePath => (filePath.split('controllers')[1]).replace('.js', '').replaceAll('\\', '/');
