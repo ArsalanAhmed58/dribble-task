@@ -1,6 +1,6 @@
 const { wrapRequestHandler, success } = require("../../../../helpers/response");
 const { createRouter } = require("../../../../routes/createRouter")
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcryptjs")
 const { Pool } = require('pg');
 const jwt = require("jsonwebtoken");
 const { UserAuthMiddleware } = require("../../../../middleware/AuthMiddleware");
