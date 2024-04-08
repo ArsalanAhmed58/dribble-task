@@ -24,10 +24,10 @@ const handler = async (req, res) => {
         const {email} = req.login_token[0]
         console.log(email)
         // Basic validation
-        // if (!location) {
-        //     return res.send(error('Kindly fill the location field'));
-        // }
-        //
+        if (!location) {
+            return res.status(500).send(error('Kindly fill the location field'));
+        }
+
         // // Check if username or email already exists
         const updateUser = 'UPDATE users SET profileImg = $1 WHERE email=$2 ';
         const existingUserResult = await client.query(updateUser, [image, email]);
@@ -35,9 +35,10 @@ const handler = async (req, res) => {
         if (existingUserResult.rowCount) {
             return res.send(success('updated Successfully'));
         }
-    } catch (error) {
+    } catch (err) {
         console.error('Error during sign up:', error);
-        res.status(500).json({message: 'Internal server error', msg: error.message,});
+        res.status(500).send(error("Internal server error", err.message))
+        // res.status(500).json({message: 'Internal server error', msg: error.message,});
     } finally {
         client.release();
     }
