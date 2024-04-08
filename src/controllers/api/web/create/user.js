@@ -22,7 +22,7 @@ const handler = async (req, res) => {
         console.log(name, username, email, password)
         // Basic validation
         if (!name || !username || !email || !password) {
-            return res.status(400).json({ message: 'All fields are required' });
+            return res.send(error('All fields are required'));
         }
 
         // Check if username or email already exists
@@ -54,7 +54,6 @@ const handler = async (req, res) => {
         VALUES ($1, $2)
         RETURNING *`, [generatedToken, user.id])
         delete newUser.rows[0].password
-
         res.status(201).send(success('User created successfully', { user: newUser.rows[0], tokenData: tokenData.rows[0] }));
         
     }

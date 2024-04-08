@@ -17,5 +17,5 @@ app.use(function (err, req, res, next) {
 })
 
 server.listen(Number(PORT), HOST, async () => {
-    console.log(`listening on http://0.0.0.0:3000`);
+    console.log(`listening on http://${HOST}:${PORT}`);
 });
