@@ -1,6 +1,10 @@
 const {wrapRequestHandler, success, error} = require("../../../../helpers/response");
 const {updateRouter} = require("../../../../routes/updateRouter")
 const {UserAuthMiddleware} = require("../../../../middleware/AuthMiddleware");
+const bcrypt = require("bcryptjs")
+const {Pool} = require('pg');
+const {userAuthMiddleware} = require("../../../../middleware/AuthMiddleware")
+
 const handler = async (req, res) => {
     let {PGHOST, PGDATABASE, PGUSER, PGPASSWORD} = process.env;
     const pool = new Pool({
