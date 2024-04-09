@@ -13,7 +13,7 @@ const validate = validations => {
             return next();
         }
         const errorArray = errors.array();
-        console.log(errorArray,"================errorArray===============================")
+        // console.log(errorArray,"================errorArray===============================")
         res.json(error(errorArray[0].msg, errorArray))
     }
 }

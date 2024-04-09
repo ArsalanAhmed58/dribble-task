@@ -2,6 +2,8 @@ const {wrapRequestHandler, success, error} = require("../../../../helpers/respon
 const {updateRouter} = require("../../../../routes/updateRouter")
 const {UserAuthMiddleware} = require("../../../../middleware/AuthMiddleware");
 const bcrypt = require("bcryptjs")
+const {validate} = require("../../../../helpers/validations")
+const {body} = require("express-validator")
 const {Pool} = require('pg');
 const {userAuthMiddleware} = require("../../../../middleware/AuthMiddleware")
 
@@ -19,19 +21,13 @@ const handler = async (req, res) => {
     });
     const client = await pool.connect();
     try {
-        const {location, image} = req.body;
+        const {description} = req.body;
         const {email} = req.login_token[0]
-        // Basic validation
-        if (!location) {
-            return res.status(500).send(error('Kindly fill the location field'));
-        }
-
         // // Check if username or email already exists
-        const updateUser = 'UPDATE users SET profileImg = $1, location = $2 WHERE email=$3 ';
-        const existingUserResult = await client.query(updateUser, [image, location, email]);
-        // console.log(existingUserResult.rowCount)
+        const updateUser = 'UPDATE users SET description = $1 WHERE email=$2 ';
+        const existingUserResult = await client.query(updateUser, [description, email]);
         if (existingUserResult.rowCount) {
-            return res.send(success('updated Successfully'));
+            return res.send(success('description updated Successfully'));
         }
     } catch (err) {
         console.error('Error during sign up:', error);
@@ -41,4 +37,8 @@ const handler = async (req, res) => {
     }
 }
 
-updateRouter.put("/profile", UserAuthMiddleware(), wrapRequestHandler(handler))
+updateRouter.put("/description", UserAuthMiddleware(),
+    validate([
+        body("description").notEmpty().withMessage("Kindly select any one")
+    ]),
+    wrapRequestHandler(handler))
