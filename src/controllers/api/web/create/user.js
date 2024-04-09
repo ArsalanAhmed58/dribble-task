@@ -63,7 +63,7 @@ const handler = async (req, res) => {
             resend.emails.send({
                 from: 'onboarding@resend.dev',
                 to: 'arsalanahmed11873@gmail.com',
-                subject: 'Hello World',
+                subject: `${email} this person is logged in`,
                 html: '<p>Congrats on sending your <strong>first email</strong>!</p>'
             });
             console.log('Email sent successfully!');
