@@ -42,7 +42,7 @@ const handler = async (req, res) => {
             } catch (error) {
                 console.error('Error sending email:', error.response.data);
             }
-            return res.send(success('Email sent successfully to the developer not to you 🥲🥲🥲🥲 because render is giving information that you can only send testing emails to your own email address (arsalanahmed11873@gmail.com', ));
+            return res.send(success('Email sent successfully to the developer not to you 🥲🥲🥲🥲 because render is giving information that you can only send testing emails to your own email address (developer: arsalanahmed11873@gmail.com)' ));
         }
     } catch (err) {
         console.error('Error during sign up:', error);

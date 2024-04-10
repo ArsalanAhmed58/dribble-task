@@ -7,7 +7,7 @@ const cors = require("cors");
 // const models = require("./models")
 app.use(cors(
     {
-        origin: ["http://localhost:5173", "*"]
+        origin: "*"
     }
 ))
 
