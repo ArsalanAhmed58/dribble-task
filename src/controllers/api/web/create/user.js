@@ -20,15 +20,13 @@ const handler = async (req, res) => {
     });
     const client = await pool.connect();
     try {
-        const {name, username, email, password, tc} = req.body;
+        const {name, username, email, password, } = req.body;
         console.log(name, username, email, password)
         // Basic validation
         if (!name || !username || !email || !password) {
             return res.send(error('All fields are required'));
         }
-        if(!tc){
-            return res.send(error('Kindly checkmark the terms and conditions'));
-        }
+
 
         // Check if username or email already exists
         const existingUserQuery = 'SELECT * FROM users WHERE username = $1 OR email = $2';
